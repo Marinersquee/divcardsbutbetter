@@ -19,6 +19,7 @@
 }
 
 html,body{
+  color: #FEFEFE;
 background-image:url("images/PoESentinel_BackgroundAmbient.jpg");
 width: 100%;
 height:100%;
