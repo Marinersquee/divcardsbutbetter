@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <title>Div Cards but better</title>
+  <link rel="stylesheet" href="divstyles.css">
+  <script>
+    var csvData = `Map,Card,Stack Size,Reward,Tier
+    Acid Caverns,The Encroaching Darkness,8,Map (corrupted),ActualGarabage
+    Acid Caverns,The Gambler,5,Divination Card,Meh
+    Acid Caverns,The Inoculated,4,Seraphim's Armor,Situational
+    Alleyways,,,,
+    Ancient City,Arrogance of the Vaal,8,Item Two Implicit (corrupted),Situational
+    Ancient City,Her Mask,4,Sacrifice Fragment,ActualGarabage
+    Ancient City,The Admirer,9,Atziri's Item,Situational
+    Ancient City,The Catalyst,3,1x Vaal Orb,Situational
+    Ancient City,The Damned,6,Soul Ripper,Situational
+    Ancient City,The Encroaching Darkness,8,Map (corrupted),ActualGarabage
+    Ancient City,The Gambler,5,Divination Card,Meh
+    Arachnid Nest,The Encroaching Darkness,8,Map (corrupted),ActualGarabage
+    Arachnid Nest,The Gambler,5,Divination Card,Meh
+    Arachnid Nest,The Trial,7,Map T15 (corrupted),Situational
+    Arachnid Nest,The Web,8,Weapon of Crafting,Situational
+    Arcade,Assassin's Favour,9,Dagger,Situational
+    Arcade,Her Mask,4,Sacrifice Fragment,ActualGarabage
+    Arcade,The Encroaching Darkness,8,Map (corrupted),ActualGarabage
+    Arcade,The Gambler,5,Divination Card,Meh
+    Arcade,The Poet,9,Blood of Corruption (corrupted),Situational
+    Arcade,The Saint's Treasure,10,2x Exalted Orb,Situational
+    Arcade,Home,3,Exceptional Gem 1-20% Qual,Situational
+    Arid Lake,Her Mask,4,Sacrifice Fragment,ActualGarabage
+    Arid Lake,The Encroaching Darkness,8,Map (corrupted),ActualGarabage
+    Arid Lake,The Gambler,5,Divination Card,Meh
+    Arid Lake,The Rabid Rhoa,4,Malicious Gemini Claw iLvl 83,Situational
+    Arid Lake,The Tinkerer's Table,5,5x Fossil,Situational
+    Armoury,Her Mask,4,Sacrifice Fragment,ActualGarabage
+    Armoury,Merciless Armament,4,Merciless 2h Weapon 1Lvl 100,Situational
+    Armoury,The Encroaching Darkness,8,Map (corrupted),ActualGarabage
+    Armoury,The Gambler,5,Divination Card,Meh
+    Armoury,The Patient,8,The Nurse,Situational
+    Armoury,The Side Quest,5,20x Scouting Report,Situational
+    Armoury,The Trial,7,Map T15 ( corrupted),Situational
+    Armoury,The Warlord,6,6L Coronal Maul iLvl 83,Situational
+    Arsenal,Abandoned Wealth,5,3x Exalted Orb,GodTier
+    Arsenal,Dying Anguish,8,L19 Gem Alt Qual 19%,Situational
+    Arsenal,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Arsenal,Jack in the Box,4,Item,Situational
+    Arsenal,Rats,8,Rat's Nest,Situational
+    Arsenal,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Arsenal,The Gambler,5,Divination Card,Meh
+    Arsenal,The Patient,8,The Nurse,Situational
+    Arsenal,The Warlord,6,6L Coronal Maul iLvl 84,Situational
+    Arsenal,Three Faces in the Dark,7,3x Chaos Orb,Situational
+    Ashen Wood,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Ashen Wood,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Ashen Wood,The Flora's Gift,5,5L Staff iLvl66,Situational
+    Ashen Wood,The Gambler,5,Divination Card,Meh
+    Ashen Wood,The Pack Leader,6,Alpha's Howl,Situational
+    Ashen Wood,The Scarred Meadow,9,Wake of Destruction,Situational
+    Ashen Wood,Tranquility,7,Voltaxic Rift,Situational
+    Ashen Wood,The Scout,8,7x Exalted Orb,GodTier
+    Atoll,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Atoll,Lantador's Lost Love,7,Two-Stone Ring,Situational
+    Atoll,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Atoll,The Gambler,5,Divination Card,Meh
+    Atoll,The Journey,3,Harbinger's Orb,Situational
+    Atoll,The Spark and the Flame,2,Berek's Respite,Situational
+    Atoll,The Tinkerer's Table,5,5x Fossil,Situational
+    Atoll,The Wind,7,Windripper,Situational
+    Atoll,The Catch,18,Fishing Rod Incubated iLvl99,Situational
+    Barrows,,,,
+    Bazzar,Assassin's Favour,9,Dagger,Situational
+    Bazzar,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Bazzar,The Drunken Aristocrat,8,Divination Distillate,Situational
+    Bazzar,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Bazzar,The Gambler,5,Divination Card,Meh
+    Bazzar,The Poet,9,Blood of Corruption (corrupted),Situational
+    Bazzar,The Saint's Treasure,10,2x Exalted Orb,Situational
+    Bazzar,The Trial,7,Map T15 (corrupted),Situational
+    Basilica,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Basilica,Lachrymal Necrosis,3,Jewel Implicit Modifier: Corrupted Blood Cannot be inflicted on you ( Corrupted),Situational
+    Basilica,The Celestial Stone,10,Opal Ring iLvl 100 Shaper Item,Situational
+    Basilica,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Basilica,The Gambler,5,Divination Card,Meh
+    Basilica,The Golden Era,7,Flaring Eclipse Staff iLvl 100,Situational
+    Basilica,The Innocent,10,40x Orb of Regret,Situational
+    Basilica,The Opulent,5,Ring iLvl 100,Situational
+    Basilica,Desperate Crusade,3,Prism Guardian,Situational
+    Bog,Death,4,Mon'tergul's Grasp,Situational
+    Bog,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Bog,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Bog,The Gambler,5,Divination Card,Meh
+    Bog,The Trial,7,Map T15 (corrupted),Situational
+    Bone Crypt,Coveted Possession,9,5x Regal Orb,Situational
+    Bone Crypt,Grave Knowledge,6,Summon Raging Spirit 20% Qual,Situational
+    Bone Crypt,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Bone Crypt,The Celestial Justicar,6,6L Astral Plate,Situational
+    Bone Crypt,The Craving,4,Unending Hunger,Situational
+    Bone Crypt,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Bone Crypt,The Forsaken,7,Umbilicus Immortalis,Situational
+    Bone Crypt,The Gambler,5,Divination Card,Meh
+    Bone Crypt,The Standoff,3,Rustic Sash,Situational
+    Bone Crypt,The Summoner,6,Minion Gem 20% Qual,Situational
+    Bone Crypt,The Trial,7,Map T15 (corrupted),Situational
+    Bone Crypt,The Wretched,6,Belt,Situational
+    Caldera,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Caldera,Pride Before the Fall,8,Kaom's Heart (corrupted),Situational
+    Caldera,The Battle Born,5,Axe,Situational
+    Caldera,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Caldera,The Gambler,5,Divination Card,Meh
+    Caldera,The King's Heart,8,Kaom's Heart,Situational
+    Canyon,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Canyon,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Canyon,The Gambler,5,Divination Card,Meh
+    Canyon,The Tinkerer's Table,5,5x Fossil,Situational
+    Canyon,The Trial,7,Map T15 (corrupted),Situational
+    Carcass,Immortal Resolve,6,6L Body Armor Influenced Item,Situational
+    Carcass,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Carcass,The Gambler,5,Divination Card,Meh
+    Carcass,The Hunger,9,Taste of Hate,Situational
+    Carcass,The Insatiable,3,The Harvest (corrupted),Situational
+    Carcass,The Oath,6,Death's Oath,Situational
+    Carcass,The Surveyor,4,Map T14,Situational
+    Carcass,Vile Power,5,Doomfletch's Prism,Situational
+    Cells,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Cells,The Chains that Bind,11,6L Body Armour,UsefulAF
+    Cells,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Cells,The Gambler,5,Divination Card,Meh
+    Cells,The Nurse,8,The Doctor,Situational
+    Cells,The Penitent,5,Unset Ring,Situational
+    Cells,The Soul,9,Soul Taker,Situational
+    Cells,The Wretched,6,Belt,Situational
+    Cells,The Dungeon Master,7,Belt Double-Influenced Item,Situational
+    Cemetery,Brother's Stash,,5x Exalted Orb,GodTier
+    Cemetery,Cursed Words,13,Maw of Mischief,Situational
+    Cemetery,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Cemetery,Struck by Lightning,3,Electrocuting Jewelry iLvl 76,ActualGarbage
+    Cemetery,The Cacophony,8,3x Deafening Essence,Situational
+    Cemetery,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Cemetery,The Gambler,5,Divination Card,Meh
+    Cemetery,The One with All,6,Le Heup of All (corrupted),Situational
+    Cemetery,The Union,7,10x Gem Cutters Prism,Situational
+    Chateau,,,,
+    Colosseum,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Colosseum,The Deceiver,4,Belt of the Deceiver (corrupted),Situational
+    Colosseum,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Colosseum,The Gambler,5,Divination Card,Meh
+    Colosseum,The Gladiator,5,Nightmare Bascinet,Situational
+    Colosseum,The Sword King's Salute,7,Daresso's Salute,Situational
+    Colosseum,The Visionary,6,Lioneye's Vision,Situational
+    Conservatory,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Conservatory,The Opulent,5,Ring iLvl 100,Situational
+    Conservatory,The Undaunted,5,Nemesis Item (corrupted),Situational
+    Core,,,,
+    Courtyard,Emperor's Luck,5,5x Currency,Situational
+    Courtyard,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Courtyard,Peaceful Moments,5,Timeless Jewel,Situational
+    Courtyard,Rain Tempter,9,Map T6,Situational
+    Courtyard,Struck by Lightning,3,Electrocuting Jewelry iLvl 76,ActualGarbage
+    Courtyard,The Carrion Crow,4,Life Armor,ActualGarbage
+    Courtyard,The Easy Stroll,2,Map T15 8 Mods (corrupted),Situational
+    Courtyard,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Courtyard,The Gambler,5,Divination Card,Meh
+    Courtyard,The Porcupine,6,6L Short Bow iLvl 50,UsefulAF
+    Courtyard,The Trial,7,Map T15 (corrupted),Situational
+    Courtyard,Three Voices,3,3x Essence,Situational
+    Courtyard,Thunderous Skies,5,Storm Cloud,Situational
+    Courtyard,The Fox in the Brambles,7,Bramblejack Two-Implicit (corrupted),Situational
+    Crimson Temple,Seven Years Bad Luck,13,Mirror Shard,Situational
+    Crimson Temple,The Blazing Fire,6,Chin Sol,Situational
+    Crimson Temple,The Cacophony,8,3x Deafening Essence,Situational
+    Crimson Temple,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Crimson Temple,The Enlightened,6,L3 Enlighten,Situational
+    Crimson Temple,The Gambler,5,Divination Card,Meh
+    Crimson Temple,The Journalist,10,Helmet Double-Veiled Item,Situational
+    Crimson Temple,The Life Thief,6,Zerphi's Heart,Situational
+    Crimson Temple,The Lord of Celebration,4,Sceptre of Celebration Shaper Item,Situational
+    Crimson Temple,The Opulent,5,Ring iLvl 100,Situational
+    Crimson Temple,The Forward Gaze,6,Replica Item,Situational
+    Crimson Temple,The Apothecary,5,Mageblood,GodTier
+    Crimson Township,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Crimson Township,The Gambler,5,Divination Card,Meh
+    Crimson Township,Home,3,Exceptional Gem 1-20% Qual,Situational
+    Cursed Crypt,Grave Knowledge,6,Summon Raging Spirit 20% Qual,Situational
+    Cursed Crypt,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Cursed Crypt,The Celestial Justicar,6,6L Astral Plate,Situational
+    Cursed Crypt,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Cursed Crypt,The Gambler,5,Divination Card,Meh
+    Cursed Crypt,The Tinkerer's Table,5,5x Fossil,Situational
+    Cursed Crypt,The Trial,7,Map T15 (corrupted),Situational
+    Cursed Crypt,The Wretched,6,Belt,Situational
+    Cursed Crypt,The Rabbit's Foot,8,10x Incursion Vial,Situational
+    Dark Forest,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Dark Forest,Mawr Blaidd,16,Eyes of the Great Wolf,Situational
+    Dark Forest,The Dragon,4,Coruscating Elixer,Situational
+    Dark Forest,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Dark Forest,The Gambler,5,Divination Card,Meh
+    Dark Forest,The Wolven King's Bite,8,Rigwald's Quills,Situational
+    Defiled Cathedral,Divine Justice,1,Helmet Eternal Lab Enchantment,Situational
+    Defiled Cathedral,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Defiled Cathedral,Lachrymal Necrosis,3,Jewel Implicit Modifier: Corrupted Blood Cannot be inflicted on you ( Corrupted),Situational
+    Defiled Cathedral,Seven Years Bad Luck,13,Mirror Shard,Situational
+    Defiled Cathedral,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Defiled Cathedral,The Enlightened,6,L3 Enlighten,Situational
+    Defiled Cathedral,The Gambler,5,Divination Card,Meh
+    Defiled Cathedral,The Journalist,10,Helmet Double-Veiled Item,Situational
+    Desert,,,,
+    Dig,Buried Treasure,3,Sulphite Scarab,Situational
+    Dig,Gift of Asenath,5,Asenath's Gentle Touch Two Implicit (corrupted),Situational
+    Dig,Gift of the Gemling Queen,9,L20 Support Gem,Situational
+    Dig,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Dig,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Dig,The Endurance,4,Vivid Crimson Jewel,ActualGarbage
+    Dig,The Gambler,5,Divination Card,Meh
+    Dig,The Ruthless Ceinture,7,Meginord's Girdle (corrupted),Situational
+    Dig,Volatile Power,9,Vaal Gem 20% Qual (corrupted),Situational
+    Dry Sea,A Note in the Wind,4,Asenath's Chant,Situational
+    Dry Sea,Baited Expectations,8,Fishing Item,Situational
+    Dry Sea,Imperial Legacy,22,6L Imperial Bow iLvl 100,UsefulAF
+    Dry Sea,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Dry Sea,The Gambler,5,Divination Card,Meh
+    Dunes,A Note in the Wind,4,Asenath's Chant,Situational
+    Dunes,Acclimitisation,2,20x Orb of Alteration,Situational
+    Dunes,Baited Expectations,8,Fishing Item,Situational
+    Dunes,Earth Drinker,5,Granite Flask,Situational
+    Dunes,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Dunes,Imperial Legacy,22,6L Imperial Bow iLvl 100,UsefulAF
+    Dunes,Sambodhis Wisdom,3,Armor 30% Qual,Situational
+    Dunes,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Dunes,The Gambler,5,Divination Card,Meh
+    Dunes,The Trial,7,Map T15 (corrupted),Situational
+    Dungeon,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Dungeon,Hope,5,Prismatic ring (corrupted),Situational
+    Dungeon,The Chains That Bind,11,6L Body Armor,UsefulAF
+    Dungeon,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Dungeon,The Gambler,5,Divination Card,Meh
+    Dungeon,The Warden,4,Amulet (corrupted),ActualGarbage
+    Dungeon,The Wretched,6,Belt,Situational
+    Dungeon,Unchained,4,Amulet (corrupted),Situational
+    Estuary,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Estuary,Heterochromia,2,Two-Stone Ring,Situational
+    Estuary,Prosperity,10,Perandus' Gold Ring,Situational
+    Estuary,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Estuary,The Gambler,5,Divination Card,Meh
+    Estuary,The Trial,7,Map T15 (corrupted),Situational
+    Fields,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Fields,Rain of Chaos,8,Chaos Orb,Situational
+    Fields,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Fields,The Gambler,5,Divination Card,Meh
+    Fields,The Scarred Meadow,9,Wake of Destruction,Situational
+    Fields,Tranquility,7,Voltaxic Rift,Situational
+    Flooded Mine,Buried Treasure,3,Sulphite Scarab,Situational
+    Flooded Mine,Death,4,Mon'tregul's Grasp,Situational
+    Flooded Mine,Gift of the Gemling Queen,,L20 Support Gem,Situational
+    Flooded Mine,Glimmer of Hope,8,Gold Ring,Situational
+    Flooded Mine,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Flooded Mine,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Flooded Mine,The Endurance,4,Vivid Crimson Jewel,ActualGarbage
+    Flooded Mine,The Fathomless Depths,8,Lightpoacher,Situational
+    Flooded Mine,The Gambler,5,Divination Card,Meh
+    Flooded Mine,The Primordial,5,Jewel Primordial,ActualGarbage
+    Flooded Mine,The Rite of Elements,5,L21 Golem Gem (corrupted),Situational
+    Flooded Mine,The Survivalist,3,7x Orb of Alchemy,Situational
+    Flooded Mine,The Wolf,5,Rigwald Item,Situational
+    Flooded Mine,Time-Lost Relic,10,League-Specific Item,Situational
+    Flooded Mine,Treasure Hunter,7,Vaults of Atziri (corrupted),Situational
+    Flooded Mine,Volatile Power,9,Vaal Gem 20% Qual (corrupted),Situational
+    Flooded Mine,A Stone Perfected,5,Jewel Primordial 1-2 Implicit (corrupted),Situational
+    Flooded Mine,Bijoux,3,Cluster Jewel iLvl 84,Situational
+    Forbidden Woods,Mawr Blaidd,16,Eyes of the Great Wolf,Situational
+    Forbidden Woods,Mitts,5,Gloves,Situational
+    Forbidden Woods,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Forbidden Woods,The Gambler,5,Divination Card,Meh
+    Forbidden Woods,Three Voices,3,3x Essence,Situational
+    Forbidden Woods,The Scout,8,7x Exalted Orbs,GodTier
+    Forking River,Hunter's Resolve,8,Bow,Situational
+    Forking River,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Forking River,The Gambler,5,Divination Card,Meh
+    Foundry,,,,
+    Fungal Hollow,,,,
+    Gardens,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Gardens,Peaceful Moments,5,Timeless Jewel,Situational
+    Gardens,The Easy Stroll,2,Map T15 8 Mods (corrupted),Situational
+    Gardens,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Gardens,The Gambler,5,Divination Card,Meh
+    Gardens,The Porcupine,6,6L Short Bow iLvl 50,UsefulAF
+    Gardens,The Trial,7,Map T15 (corrupted),Situational
+    Gardens,The Fox in the Brambles,7,Bramblejack Two-Implicit (corrupted),Situational
+    Ghetto,Dying Anguish,8,L19 Gem Alt Qual 19%,Situational
+    Ghetto,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Ghetto,Jack in the Box,4,Item,Situational
+    Ghetto,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Ghetto,The Gambler,5,Divination Card,Meh
+    Ghetto,The Gentleman,4,Sword (corrupted),Situational
+    Ghetto,The Saint's Treasure,10,2x Exalted Orb,Situational
+    Glacier,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Glacier,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Glacier,The Gambler,5,Divination Card,Meh
+    Glacier,The Wolverine,4,Claw (corrupted),Situational
+    Grave Trough,Cursed Words,13,Maw of Mischief,Situational
+    Grave Trough,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Grave Trough,The Gambler,5,Divination Card,Meh
+    Grave Trough,The Union,7,10x Gem Cutter's Prism,Situational
+    Grotto,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Grotto,Hunter's Reward,3,The Taming,Situational
+    Grotto,Loyalty,5,3x Orb of Fusing,Situational
+    Grotto,Pride of the First Ones,7,Farrul's Fur,Situational
+    Grotto,The Primordial,5,Jewel Primordial,ActualGarbage
+    Grotto,The Rite of Elements,5,L21 Golem Gem (corrupted),Situational
+    Grotto,The Watcher,12,Crown of Eyes,Situational
+    Grotto,Treasure Hunter,7,Vaults of Atziri (corrupted),Situational
+    Grotto,A Stone Perfected,5,Jewel Primordial 1-2 Implicit (corrupted),Situational
+    Haunted Mansion,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Haunted Mansion,The Blazing FIre,6,Chin Sol,Situational
+    Haunted Mansion,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Haunted Mansion,The Gambler,5,Divination Card,Meh
+    Haunted Mansion,The Journalist,10,Helmet Double-Veiled Item,Situational
+    Haunted Mansion,The Opulent,5,Ring iLvl 100,Situational
+    Laboratory,Azyran's Reward,9,Prismatic Jewel (corrupted),Situational
+    Laboratory,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Laboratory,The Dreamland,8,Poorjoy's Asylum,Situational
+    Laboratory,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Laboratory,The Gambler,5,Divination Card,Meh
+    Laboratory,The Opulent,5,Ring iLvl 100,Situational
+    Laboratory,The Professor,4,Putric Cloister,Situational
+    Laboratory,The Trial,7,Map T15 (corrupted),Situational
+    Lair,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Lair,Loyalty,5,3x Orb of Fusing,Situational
+    Lair,Pride of the FIrst Ones,7,Farrul's Fur,Situational
+    Lair,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Lair,The Gambler,5,Divination Card,Meh
+    Lair,The Master,4,Bisco's Collar,Situational
+    Lair,The Trial,7,Map T15 (corrupted),Situational
+    Lair,The Wolf's Shadow,3,Hyaon's Fury,Situational
+    Lair,The Wolven King's Bite,8,Rigwald's Quills,Situational
+    Lair,The Scout,8,7x Exalted Orbs,GodTier
+    Lava Lake,,,,
+    Ley Line,,,,
+    Lighthouse,,,,
+    Lookout,Her Mask,4,Sacrifice Fragment,Meh
+    Lookout,Hope,5,Prismatic ring (corrupted),Situational
+    Lookout,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Lookout,The Enlightened,6,L3 Enlighten,Situational
+    Lookout,The Gambler,5,Divination Card,Meh
+    Lookout,The Journalist,10,Helmet Double-Veiled Item,Situational
+    Lookout,The Life Thief,6,Zerphi's Heart,Situational
+    Lookout,The Forward Gaze,6,Replica Item,Situational
+    Malformation,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Malformation,The Gambler,5,Divination Card,Meh
+    Malformation,The Hunger,9,Taste of Hate,Situational
+    Malformation,The Oath,6,Death's Oath,Situational
+    Malformation,The Surveyor,4,Map T14,Situational
+    Malformation,Vinia's Token,5,10x Orb of Regret,Situational
+    Marshes,Death,4,Mon'tergul's Grasp,Situational
+    Marshes,Her Mask,4,Sacrifice Fragment,Situational
+    Marshes,Pride Before the Fall,8,Kaom's Heart (corrupted),Situational
+    Marshes,The Encraoching Darkness,8,Map (corrupted),ActualGarbage
+    Marshes,The Eye of the Dragon,10,Jewel (corrupted),Situational
+    Marshes,The Gambler,5,Divination Card,Meh
+    Marshes,The Tinkerer's Table,5,5x Fossil,Situational
+    Mausoleum,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Mausoleum,Might is Right,9,Trypanon,Situational
+    Mausoleum,No Traces,9,30x Orb of Scouring,Situational
+    Mausoleum,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Mausoleum,The Gambler,5,Divination Card,Meh
+    Mausoleum,The Trial,7,Map T15 (corrupted),Situational
+    Maze,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Maze,The Admirer,9,Atziri's Item,Situational
+    Maze,The Catalyst,3,1x Vaal Orb,Situational
+    Maze,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Maze,The Gambler,5,Divination Card,Meh
+    Maze,The Inventor,6,10x Vaal Orb,Situational
+    Mineral Pools,A Sea of Blue,3,13x Orb of Alteration,Situational
+    Mineral Pools,Glimmer of Hope,8,Gold Ring,Situational
+    Mineral Pools,Lysah's Respite,6,Agate Amulet (corrupted),Situational
+    Mineral Pools,The Cache,6,Jewellery,Situational
+    Mineral Pools,The Cacophony,8,3x Deafening Essence,Situational
+    Mineral Pools,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Mineral Pools,The Gambler,5,Divination Card,Meh
+    Mineral Pools,The Jewlers Boon,5,5L Body Armour Influenced Item,Situational
+    Mineral Pools,The Lover,2,Jewellery iLvl 79,Situational
+    Mineral Pools,The Survivalist,3,7x Orb of Alchemy,Situational
+    Mineral Pools,The Trial,7,Map T15 (corrupted),Situational
+    Moon Temple,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Moon Temple,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Moon Temple,The Gambler,5,Divination Card,Meh
+    Moon Temple,The Trial,7,Map T15 (corrupted),Situational
+    Moon Temple,The Twilight Moon,6,The Twilight Temple,Situational
+    Moon Temple,The Twins,8,Gemini Claw of Celebration iLvl 83,Situational
+    Moon Temple,Wealth and Power,11,L4 Enlighten (corrupted),Situational
+    Mud Geyser,,,,
+    Museum,A Dab of Ink,9,Poet's Pen,Situational
+    Museum,Blind Venture,7,Ring (corrupted),Situational
+    Museum,Destined to Crumble,5,Body Armour iLvl 100,Situational
+    Museum,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Museum,Shard of Fate,4,Vivid Jewel,ActualGarbage
+    Museum,The Academic,8,Inspired Learning,Situational
+    Museum,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Museum,The Enthusiasts,3,Victario's Influence Two-Implicit (corrupted),Situational
+    Museum,The Gambler,5,Divination Card,Meh
+    Museum,The Polymath,3,Astramentis,Situational
+    Museum,The Scholar,3,40x Scroll of Wisdom,Situational
+    Museum,The Trial,7,Map T15 (corrupted),Situational
+    Museum,Thirst for Knowledge,5,Gluttony,Situational
+    Necropolis,Grave Knowledge,6,Summon Raging Spirit 20% Qual,Situational
+    Necropolis,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Necropolis,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Necropolis,The Forsaken,7,Umbilicus Immortalis,Situational
+    Necropolis,The Gambler,5,Divination Card,Meh
+    Necropolis,The Wretched,6,Belt,Situational
+    Orchard,Boon of Justice,6,Offering to the Godess,Situational
+    Orchard,Emperor's Luck,5,5x Currency,Situational
+    Orchard,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Orchard,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Orchard,The Gambler,5,Divination Card,Meh
+    Orchard,The Porcupine,6,6L Short Bow iLvl 50,UsefulAf
+    Orchard,The Trial,7,Map T15 (corrupted),Situational
+    Overgrown Ruin,Echoes of Love,3,Fidelitas' Spike Two-Implicit Corrupted,Situational
+    Overgrown Ruin,Emperor of Purity,7,6L Holy Chainmail iLvl 59,Situational
+    Overgrown Ruin,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Overgrown Ruin,Shard of Fate,4,Vivid Jewel,ActualGarbage
+    Overgrown Ruin,The Dark Mage,6,6L Staff iLvl 55,Situational
+    Overgrown Ruin,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Overgrown Ruin,The Gambler,5,Divination Card,Meh
+    Overgrown Ruin,The Garish Power,4,Jewel,Situational
+    Overgrown Ruin,The Surgeon,4,Surgeon's Flask,Situational
+    Overgrown Ruin,The Trial,7,Map T15 (corrupted),Situational
+    Overgrown Ruin,The Wretched,6,Belt,Situational
+    Overgrown Shrine,Echoes of Love,3,Fidelitas' Spike Two-Implicit Corrupted,Situational
+    Overgrown Shrine,Emperor of Purity,7,6L Holy Chainmail iLvl 60,Situational
+    Overgrown Shrine,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Overgrown Shrine,Shard of Fate,4,Vivid Jewel,ActualGarbage
+    Overgrown Shrine,The Dark Mage,6,6L Staff iLvl 56,Situational
+    Overgrown Shrine,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Overgrown Shrine,The Gambler,5,Divination Card,Meh
+    Overgrown Shrine,The Garish Power,4,Jewel,Situational
+    Overgrown Shrine,The Sigil,3,Unassailable Amulet,Situational
+    Overgrown Shrine,The Soul,9,Soul Taker,Situational
+    Overgrown Shrine,The Surgeon,4,Surgeon's Flask,Situational
+    Overgrown Shrine,The Tinkerer's Table,5,5x Fossil,Situational
+    Palace,Light and Truth,2,Crystal Sceptre,Situational
+    Palace,The Dapper Prodigy,6,6L Body Armour iLvl 100,Situational
+    Palace,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Palace,The Gambler,5,Divination Card,Meh
+    Palace,The Opulent,5,Ring iLvl 100,Situational
+    Palace,The Sephirot,11,10x Divine Orb,Situational
+    Palace,The Unexpected Prize,2,Attribute Transforming Jewel,Situational
+    Palace,Vinia's Token,5,10x Orb of Regret,Situational
+    Palace,Parasitic Passengers,8,10x Incubator iLvl84,Situational
+    Park,,,,
+    Pit,,,,
+    Plateau,,,,
+    Plaza,Boon of Justice,6,Offering to the Godess,Situational
+    Plaza,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Plaza,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Plaza,The Gambler,5,Divination Card,Meh
+    Plaza,The Porcupine,6,6L Short Bow iLvl 50,UsefulAF
+    Port,Assassin's Favour,9,Dagger,Situational
+    Port,Dying Anguish,8,L19 Gem Alt Qual 19%,Situational
+    Port,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Port,Jack in the Box,4,Item,Situational
+    Port,Lantador's Lost Love,7,Two-Stone Ring,Situational
+    Port,Lucky Connections,7,20x Orb of Fusing,Situational
+    Port,Prosperity,10,Perandus' Gold Ring,Situational
+    Port,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Port,The Gambler,5,Divination Card,Meh
+    Port,The Messenger,4,Harbinger Piece,Situational
+    Port,The Pact,9,Pledge of Hands,Situational
+    Port,The Saint's Treasure,10,2x Exalted Orb,Situational
+    Primordial Blocks,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Primordial Blocks,The Avenger,12,Mjölner (corrupted),Situational
+    Primordial Blocks,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Primordial Blocks,The Gambler,5,Divination Card,Meh
+    Primordial Blocks,The Long Watch,3,The Vigil,Situational
+    Primordial Pool,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Primordial Pool,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Primordial Pool,The Gambler,5,Divination Card,Meh
+    Primordial Pool,The Inoculated,4,Searphim's Armour,Situational
+    Primordial Pool,The Trial,7,Map T15 (corrupted),Situational
+    Promenade,Dying Anguish,8,L19 Gem Alt Qual 19%,Situational
+    Promenade,Gemcutter's Promise,3,Gem 20% Qual,Situational
+    Promenade,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Promenade,Jack in the Box,4,Item,Situational
+    Promenade,Struck by Lightning,3,Electrocuting Jewelry iLvl 76,ActualGarbage
+    Promenade,The Carrion Crow,4,Life Armor,ActualGarbage
+    Promenade,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Promenade,The Gambler,5,Divination Card,Meh
+    Promenade,The Patient,8,The Nurse,Situational
+    Promenade,The Tinkerer's Table,5,5x Fossil,Situational
+    Promenade,The Traitor,4,Wand (corrupted),Situational
+    Promenade,The Trial,7,Map T15 (corrupted),Situational
+    Promenade,The Warlord,6,6L Coronal Maul iLvl 85,Situational
+    Racecourse,,,,
+    Reef,,,,
+    Relic Chambers,,,,
+    Sepulcher,,,,
+    Shore,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Shore,Prosperity,10,Perandus' Gold Ring,Situational
+    Shore,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Shore,The Gambler,5,Divination Card,Meh
+    Shore,The Landing,5,The Beachead T15 Map (corrupted),Situational
+    Shore,The Trial,7,Map T15 (corrupted),Situational
+    Siege,,,,
+    Silo,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Silo,The Gambler,5,Divination Card,Meh
+    Silo,The Journalist,10,Helmet Double-Veiled Item,Situational
+    Silo,The Tinkerer's Table,5,5x Fossil,Situational
+    Silo,The Tireless Extractor,8,10x Oil,Situational
+    Spider Forest,The Betrayal,9,Maligaro's Virtuosity,Situational
+    Spider Forest,The Doctor,8,Headhunter,GodTier
+    Spider Forest,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Spider Forest,The Gambler,5,Divination Card,Meh
+    Spider Forest,The Incantaiton,4,The Whispering Ice,Situational
+    Spider Forest,The Pack Leader,6,Alpha's Howl,Situational
+    Spider Forest,The Trial,7,Map T15 (corrupted),Situational
+    Spider Forest,The Witch,8,Kiara's Determination,Situational
+    Spider Forest,The Scout,8,7x Exalted Orbs,GodTier
+    Spider Lair,,,,
+    Stagnation,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Stagnation,The Gambler,5,Divination Card,Meh
+    Stagnation,The Offspring,9,Ryslatha's Coil,Situational
+    Stagnation,The Pack Leader,6,Alpha's Howl,Situational
+    Strand,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Strand,Lantador's Lost Love,7,Two-Stone Ring,Situational
+    Strand,Prosperity,10,Perandus' Gold Ring,Situational
+    Strand,The Betrayal,9,Maligaro's Virtuosity,Situational
+    Strand,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Strand,The Gambler,5,Divination Card,Meh
+    Strand,The Landing,5,The Beachead T15 Map (corrupted),Situational
+    Strand,The Old Man,12,Fishing Rod Two-Implicit (corrupted),Situational
+    Strand,The Stormcaller,4,Agnerod Staff,Situational
+    Strand,Thunderous Skies,5,Storm Cloud,Situational
+    Strand,The Catch,18,Fishing Rod Incubated iLvl99,Situational
+    Strand,The One That Got Away,7,Replica Bated Breath,Situational
+    Strand,From Bone to Ashes,8,Ngamahu's Flame Two-Implicit (corrupted),Situational
+    Sulpher Vents,,,,
+    Summit,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Summit,Mitts,5,Gloves,Situational
+    Summit,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Summit,The Gambler,5,Divination Card,Meh
+    Summit,The Mountain,6,Jewel of Potency,ActualGarbage
+    Summit,The Ruthless Ceinture,7,Meginord's Girdle (corrupted),Situational
+    Summit,The Wolverine,4,Claw (corrupted),Situational
+    Sunken City,Arrogance of the Vaal,8,Item Two Implicit (corrupted),Situational
+    Sunken City,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Sunken City,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Sunken City,The Fox,6,Level 20 Gem,Situational
+    Sunken City,The Gambler,5,Divination Card,Meh
+    Sunken City,Home,3,Exceptional Gem 1-20% Qual,Situational
+    Temple,Boundless Realms,4,Map,Situational
+    Temple,Dialla's Subjugation,7,Support Gem 23% Qual (corrupted),Situational
+    Temple,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Temple,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Temple,The Enlightened,6,L3 Enlighten,Situational
+    Temple,The Gambler,5,Divination Card,Meh
+    Temple,The Opulent,5,Ring iLvl 100,Situational
+    Temple,The Sun,7,Rise of the Phoenix,Situational
+    Temple,The Twilight Moon,6,The Twilight Temple,Situational
+    Temple,The Forgotten Treasure,6,Leather Belt Double-Influenced Item,Situational
+    Terrace,,,,
+    Thicket,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Thicket,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Thicket,The Explorer,6,Map (corrupted),Situational
+    Thicket,The Gambler,5,Divination Card,Meh
+    Tower,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Tower,Struck by Lightning,3,Electrocuting Jewelry iLvl 76,ActualGarbage
+    Tower,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Tower,The Gambler,5,Divination Card,Meh
+    Tower,The Nurse,8,The Doctor,Situational
+    Tower,The Soul,9,Soul Taker,Situational
+    Tower,The Tower,6,Staff,Situational
+    Tower,The Trial,7,Map T15 (corrupted),Situational
+    Tower,The Warden,4,Amulet (corrupted),ActualGarbage
+    Tower,Thunderous Skies,5,Storm Cloud,Situational
+    Tower,The Forward Gaze,6,Replica Item,Situational
+    Tower,Home,3,Exceptional Gem 1-20% Qual,Situational
+    Toxic Sewers,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Toxic Sewers,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Toxic Sewers,The Feast,5,Romira's Banquest (corrupted),Situational
+    Toxic Sewers,The Gambler,5,Divination Card,Meh
+    Toxic Sewers,The Throne,2,Kaom's Roots (corrupted),Situational
+    Toxic Sewers,Vile Power,5,Doomfletch's Prism,Situational
+    Tropical Island,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Tropical Island,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Tropical Island,The Flora's Gift,5,5L Staff iLvl66,Situational
+    Tropical Island,The Gambler,5,Divination Card,Meh
+    Tropical Island,The Pack Leader,6,Alpha's Howl,Situational
+    Tropical Island,The Trial,7,Map T15 (corrupted),Situational
+    Tropical Island,The Catch,18,Fishing Rod Incubated iLvl99,Situational
+    Tropical Island,The Scout,8,7x Exalted Orbs,GodTier
+    Tropical Island,The Destination,9,Watcher's Eye Two-Implicit (corrupted),Situational
+    Underground River,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Underground River,Hunter's Reward,3,The Taming,Situational
+    Underground River,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Underground River,The Gambler,5,Divination Card,Meh
+    Underground River,The Trial,7,Map T15 (corrupted),Situational
+    Underground River,Treasure Hunter,7,Vaults of Atziri (corrupted),Situational
+    Underground Sea,Glimmer of Hope,8,Gold Ring,Situational
+    Underground Sea,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Underground Sea,Lysah's Respite,6,Agate Amulet (corrupted),Situational
+    Underground Sea,The Cache,6,Jewellery,Situational
+    Underground Sea,The Cacophony,8,3x Deafening Essence,Situational
+    Underground Sea,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Underground Sea,The Gambler,5,Divination Card,Meh
+    Underground Sea,The Hoarder,12,Exalted Orb,Situational
+    Underground Sea,The Lover,2,Jewellery iLvl 79,Situational
+    Underground Sea,The Siren,7,The Whispering Ice (corrupted),Situational
+    Underground Sea,The Survivalist,3,7x Orb of Alchemy,Situational
+    Underground Sea,The Tinkerer's Table,5,5x Fossil,Situational
+    Underground Sea,Treasure Hunter,7,Vaults of Atziri (corrupted),Situational
+    Vaal Pyramid,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Vaal Pyramid,The Admirer,9,Atziri's Item,Situational
+    Vaal Pyramid,The Catalyst,3,1x Vaal Orb,Situational
+    Vaal Pyramid,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Vaal Pyramid,The Gambler,5,Divination Card,Meh
+    Vaal Pyramid,The Hive of Knowledge,6,Machina Mitts Two-Implicit (corrupted),Situational
+    Vaal Pyramid,The Inventor,6,10x Vaal Orb,Situational
+    Vaal Pyramid,The Spoiled Prince,4,Dictator's Prophecy Wand iLvl 100,Situational
+    Vaal Pyramid,The Trial,7,Map T15 (corrupted),Situational
+    Vaal Pyramid,Three Voices,3,3x Essence,Situational
+    Vaal Temple,Last Hope,3,Mortal Hope,Situational
+    Vaal Temple,The Admirer,9,Atziri's Item,Situational
+    Vaal Temple,The Catalyst,3,1x Vaal Orb,Situational
+    Vaal Temple,The Damned,6,Soul Ripper,Situational
+    Vaal Temple,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Vaal Temple,The Gambler,5,Divination Card,Meh
+    Vaal Temple,The Hive of Knowledge,6,Machina Mitts Two-Implicit (corrupted),Situational
+    Vaal Temple,The Inventor,6,10x Vaal Orb,Situational
+    Vaal Temple,Three Voices,3,3x Essence,Situational
+    Vault,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Vault,Immortal Resolve,6,6L Body Armor Influenced Item,Situational
+    Vault,More is Never Enough,7,Gilded Scarab,Situational
+    Vault,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Vault,The Gambler,5,Divination Card,Meh
+    Vault,The Hoarder,12,Exalted Orb,Situational
+    Vault,The Opulent,5,Ring iLvl 100,Situational
+    Vault,The Primordial,5,Jewel Primordial,ActualGarbage
+    Vault,The Rite of Elements,5,L21 Golem Gem (corrupted),Situational
+    Vault,The Trial,7,Map T15 (corrupted),Situational
+    Vault,A Stone Perfected,5,Jewel Primordial 1-2 Implicit (corrupted),Situational
+    Waste Pool,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Waste Pool,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Waste Pool,The Feast,5,Romira's Banquest (corrupted),Situational
+    Waste Pool,The Gambler,5,Divination Card,Meh
+    Waste Pool,The Soul,9,Soul Taker,Situational
+    Waste Pool,The Throne,2,Kaom's Roots (corrupted),Situational
+    Waste Pool,The Trial,7,Map T15 (corrupted),Situational
+    Waste Pool,Vile Power,5,Doomfletch's Prism,Situational
+    Wasteland,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Wasteland,The Brittle Emperor,8,Voll's Devotion (corrupted),Situational
+    Wasteland,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Wasteland,The Gambler,5,Divination Card,Meh
+    Wasteland,The Tinkerer's Table,5,5x Fossil,Situational
+    Wasteland,The Trial,7,Map T15 (corrupted),Situational
+    Waterways,,,,
+    Wharf,,,,
+    Acton's Nightmare,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Acton's Nightmare,The Gambler,5,Divination Card,Meh
+    Acton's Nightmare,The Wilted Rose,7,L21 Aura Gem (corrupted),Situational
+    Acton's Nightmare,The Wretched,6,Belt,Situational
+    Altered Distant Memory,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Altered Distant Memory,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Altered Distant Memory,The Gambler,5,Divination Card,Meh
+    Altered Distant Memory,The Lord of Celebration,4,Sceptre of Celebration Shaper Item,Situational
+    Altered Distant Memory,The Trial,7,Map T15 (corrupted),Situational
+    Augmented Distant Memory,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Augmented Distant Memory,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Augmented Distant Memory,The Gambler,5,Divination Card,Meh
+    Augmented Distant Memory,The Lord of Celebration,4,Sceptre of Celebration Shaper Item,Situational
+    Augmented Distant Memory,The Trial,7,Map T15 (corrupted),Situational
+    "Caer Blaidd, Wolfpacks Den",The Cursed King,8,Rigwald's Curse,Situational
+    "Caer Blaidd, Wolfpacks Den",The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    "Caer Blaidd, Wolfpacks Den",The Gambler,5,Divination Card,Meh
+    "Caer Blaidd, Wolfpacks Den",The Trial,7,Map T15 (corrupted),Situational
+    Cortex,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Cortex,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Cortex,The Gambler,5,Divination Card,Meh
+    Cortex,The Lord of Celebration,4,Sceptre of Celebration Shaper Item,Situational
+    Cortex,The Trial,7,Map T15 (corrupted),Situational
+    Death and Taxes,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Death and Taxes,The Gambler,5,Divination Card,Meh
+    Doryani's Mechinarium,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Hall of Grandmasters,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Hall of Grandmasters,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Hall of Grandmasters,The Gambler,5,Divination Card,Meh
+    Hall of Grandmasters,The Immortal,10,House of Mirrors,Situational
+    Hallowed Ground,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Hallowed Ground,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Hallowed Ground,The Gambler,5,Divination Card,Meh
+    Oba's Cursed Trove,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Oba's Cursed Trove,The Gambler,5,Divination Card,Meh
+    Olmec's Sanctum,Grave Knowledge,6,Summon Raging Spirit 20% Qual,Situational
+    Olmec's Sanctum,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Olmec's Sanctum,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Olmec's Sanctum,The Forsaken,7,Umbilicus Immortalis,Situational
+    Olmec's Sanctum,The Gambler,5,Divination Card,Meh
+    Pillars of Arun/Replica,Imperial Legacy,22,6L Imperial Bow iLvl 100,UsefulAF
+    Pillars of Arun/Replica,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Pillars of Arun/Replica,The Gambler,5,Divination Card,Meh
+    Poorjoy's Asylum/Replica,Chaotic Disposition,1,5x Chaos Orb,Situational
+    Poorjoy's Asylum/Replica,Deadly Joy,,Torrent's Reclamation Two-Implicit (corrupted),Situational
+    Poorjoy's Asylum/Replica,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    Poorjoy's Asylum/Replica,The Army of Blood,6,Bloodbond,Situational
+    Poorjoy's Asylum/Replica,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Poorjoy's Asylum/Replica,The Fiend,11,Headhunter (corrupted),Situational
+    Poorjoy's Asylum/Replica,The Gambler,5,Divination Card,Meh
+    Poorjoy's Asylum/Replica,The Last Supper,6,Bino's Kitchen Knife,Situational
+    Rerwitten Distant Memory,Her Mask,4,Sacrifice Fragment,ActualGabrage
+    Rerwitten Distant Memory,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    Rerwitten Distant Memory,The Gambler,5,Divination Card,Meh
+    Rerwitten Distant Memory,The Lord of Celebration,4,Sceptre of Celebration Shaper Item,Situational
+    Rerwitten Distant Memory,The Trial,7,Map T15 (corrupted),Situational
+    The Cowards Trial,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    The Cowards Trial,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    The Cowards Trial,The Forsaken,7,Umbilicus Immortalis,Situational
+    The Cowards Trial,The Gambler,5,Divination Card,Meh
+    The Cowards Trial,The Wretched,6,Belt,Situational
+    The Cowards Trial,The Rabbit's Foot,8,10x Incursion Vial,Situational
+    The Putrid Cloister,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    The Putrid Cloister,The Gambler,5,Divination Card,Meh
+    The Putrid Cloister,The Trial,7,Map T15 (corrupted),Situational
+    The Twilight Temple,Dialla's Subjugation,7,Support Gem 23% Qual (corrupted),Situational
+    The Twilight Temple,Haunting Shadows,4,Metamorph Item,Situational
+    The Twilight Temple,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    The Twilight Temple,The Gambler,5,Divination Card,Meh
+    The Twilight Temple,The Lunaris Priestess,5,Sire of Shards,Situational
+    The Twilight Temple,The Sun,7,Rise of the Phoenix,Situational
+    The Vinktar Square,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    The Vinktar Square,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    The Vinktar Square,The Gambler,5,Divination Card,Meh
+    The Vaults of Atziri,Atziri's Arsenal,4,Weapon (corrupted),Situational
+    The Vaults of Atziri,Her Mask,4,Sacrifice Fragment,ActualGarbage
+    The Vaults of Atziri,The Adventuring Spirit,6,Victario's Influence,Situational
+    The Vaults of Atziri,The Cache,6,Jewellery,Situational
+    The Vaults of Atziri,The Catalyst,3,1x Vaal Orb,Situational
+    The Vaults of Atziri,The Damned,6,Soul Ripper,Situational
+    The Vaults of Atziri,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
+    The Vaults of Atziri,The Gambler,5,Divination Card,Meh
+    The Vaults of Atziri,The Hoarder,12,Exalted Orb,Situational
+    The Vaults of Atziri,The Inventor,6,10x Vaal Orb,Situational
+    The Vaults of Atziri,The Opulent,5,Ring iLvl 100,Situational
+    The Vaults of Atziri,The Queen,16,Atziri's Acuity,Situational`;
+  </script>
+  <script type="text/javascript">
+    var sortItemListFn = (a, b) => {
+      return a.tier - b.tier;
+    };
+
+    var TierEnum = {
+      ActualGarabage: 4,
+      Situational: 3,
+      Meh: 2,
+      UsefulAF: 1,
+      GodTier: 0,
+    }
+    var getTierEnumString = function (tier) {
+      switch (tier) {
+        case TierEnum.ActualGarabage: return "Actual Garbage";
+        default:
+        case TierEnum.Situational: return "Situational";
+        case TierEnum.Meh: return "Meh";
+        case TierEnum.UsefulAF: return "Useful AF"
+        case TierEnum.GodTier: return "GodTier"
+      }
+    }
+
+    var createTableFromMap = function (map) {
+      if (map.items.length === 0) {
+        let div = document.createElement('div');
+        div.innerText = "This Map is currently off the Atlas."
+        return div;
+      }
+      let table = document.createElement('table');
+      {
+        let headerRow = table.insertRow();
+        headerRow.classList.add('header');
+        let nameCol = headerRow.insertCell();
+        nameCol.innerText = 'Item Name';
+        let stackSizeCol = headerRow.insertCell();
+        stackSizeCol.innerText = 'Stack Size';
+        let rewardCol = headerRow.insertCell();
+        rewardCol.innerText = 'Reward';
+        let tierCol = headerRow.insertCell();
+        tierCol.innerText = 'Tier';
+      }
+      for (let i = 0; i < map.items.sort(sortItemListFn).length; i++) {
+        let itemRow = table.insertRow();
+        let nameCol = itemRow.insertCell();
+        nameCol.innerText = map.items[i].name;
+        let stackSizeCol = itemRow.insertCell();
+        stackSizeCol.innerText = map.items[i].stackSize;
+        let rewardCol = itemRow.insertCell();
+        rewardCol.innerText = map.items[i].reward;
+        let tierCol = itemRow.insertCell();
+        tierCol.innerText = getTierEnumString(map.items[i].tier);
+      }
+      return table;
+
+    }
+
+    var parseCsvString = function (csv) {
+      let currentCsvIndex = 0;
+      let table = [];
+      let row = [];
+      let currentItem = null;
+      while (currentCsvIndex < csv.length) {
+        let c = csv[currentCsvIndex];
+        currentCsvIndex++;
+
+        switch (c) {
+          case ' ':
+            if (currentItem === null) continue;
+            else currentItem += c;
+            break;
+          case ',':
+            if (currentItem !== null) currentItem = currentItem.trim();
+            row.push(currentItem);
+            currentItem = null;
+            break;
+          case '\r':
+            continue;
+          case '\n':
+            if (currentItem !== null) currentItem = currentItem.trim();
+            row.push(currentItem);
+            currentItem = null;
+            table.push(row);
+            row = [];
+            break;
+          default:
+            if (currentItem === null) currentItem = c;
+            else currentItem += c;
+            break;
+        }
+      }
+      table.push(row);
+      return table;
+    };
+
+    var parsedData = parseCsvString(csvData);
+
+    var data = {
+      maps: {}
+    };
+
+    {
+      const idxMap = 0;
+      const idxCard = 1;
+      const idxTier = 4;
+      const idxStackSize = 2;
+      const idxReward = 3;
+      for (let i = 1; i < parsedData.length; i++) {
+        const row = parsedData[i];
+        let mapName = row[idxMap];
+        if (data.maps[mapName] === undefined || data.maps[mapName] === null) {
+          data.maps[mapName] = {
+            name: mapName,
+            items: []
+          };
+        }
+        if (row[idxCard] !== null) {
+          data.maps[mapName].items.push({
+            name: row[idxCard],
+            stackSize: parseInt(row[idxStackSize]),
+            reward: row[idxReward],
+            tier: TierEnum[row[idxTier]]
+          })
+        }
+      }
+    }
+
+  </script>
+</head>
+
+<body>
+
+  <div class="Header-container">
+    <div class="row">
+      <div class="column"><img class="poeimg" src="images/PoESentinel_LogoTransparent.png" alt="PoE logo"></div>
+      <div class="column divcol">Div Cards But Better</div>
+      <div class="column sentinelcol" ><img class="sentinelimg" src="images/PoESentinel_SentinelCharacterArt_Transparent.png" alt="Sentinel chars">
+      </div>
+    </div>
+  </div>
+
+  <div class="body-container">
+    <div class="leftside">
+      <p>Search for your Map:</p>
+      <div class="dropdown dropdown-scroll">
+        <input list="maps" id="selectMap" name="maps">
+        <datalist id="maps"></datalist>
+      </div>
+    </div>
+
+    <div class="rightSide" id="rightSide">
+
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var selectMap = document.getElementById('selectMap');
+    var maps = document.getElementById('maps');
+    var rightSide = document.getElementById('rightSide');
+    for (const mapName in data.maps) {
+      if (Object.hasOwnProperty.call(data.maps, mapName)) {
+        const map = data.maps[mapName];
+        let option = document.createElement('option');
+        option.value = map.name.trim();
+        maps.appendChild(option);
+      }
+    }
+
+    selectMap.addEventListener('change', function (e) {
+      let mapIndex = selectMap.value.trim();
+      let map = data.maps[mapIndex];
+      rightSide.innerHTML = '';
+      if (map !== null && map !== undefined) {
+        rightSide.appendChild(createTableFromMap(map));
+      }
+      selectMap.value = "";
+    });
+  </script>
+</body>
+
+</html>
