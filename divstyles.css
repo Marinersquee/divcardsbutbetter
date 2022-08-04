@@ -94,3 +94,17 @@ tr.header td {
   display: block;
   text-align: right;
 }
+
+a:link {
+  color: pink;
+  text-decoration: none;
+}
+
+a:hover {
+  color: aqua;
+  text-decoration: underline;
+}
+
+a:active {
+  color: red;
+}
