@@ -796,6 +796,7 @@
         else {
           let a = document.createElement('a');
           a.href = map.items[i].link;
+          a.target = "_blank";
           rewardCol.appendChild(a);
           a.innerText = map.items[i].reward;
          }
