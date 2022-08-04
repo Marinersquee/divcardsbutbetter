@@ -790,13 +790,20 @@
         let stackSizeCol = itemRow.insertCell();
         stackSizeCol.innerText = map.items[i].stackSize;
         let rewardCol = itemRow.insertCell();
-        let a = document.createElement('a');
-        a.href = map.items[i].link;
-        rewardCol.appendChild(a);
-        rewardCol.innerText = map.items[i].reward;
+        if (map.items[i].link == null){
+          rewardCol.innerText = map.items[i].reward;
+        }
+        else {
+          let a = document.createElement('a');
+          a.href = map.items[i].link;
+          rewardCol.appendChild(a);
+          a.innerText = map.items[i].reward;
+         }
+
         let tierCol = itemRow.insertCell();
         tierCol.innerText = getTierEnumString(map.items[i].tier);
       }
+
       return table;
 
     }
