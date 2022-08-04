@@ -176,7 +176,7 @@
     Crimson Temple,The Life Thief,6,Zerphi's Heart,Situational
     Crimson Temple,The Lord of Celebration,4,Sceptre of Celebration Shaper Item,Situational
     Crimson Temple,The Opulent,5,Ring iLvl 100,Situational
-    Crimson Temple,The Forward Gaze,6,Replica Item,Situational
+    Crimson Temple,The Forward Gaze,6,Replica Item,Situational,https://www.poewiki.net/wiki/Replica_unique_item
     Crimson Temple,The Apothecary,5,Mageblood,GodTier
     Crimson Township,The Encroaching Darkness,8,Map (corrupted),ActualGarbage
     Crimson Township,The Gambler,5,Divination Card,Meh
@@ -790,6 +790,9 @@
         let stackSizeCol = itemRow.insertCell();
         stackSizeCol.innerText = map.items[i].stackSize;
         let rewardCol = itemRow.insertCell();
+        let a = document.createElement('a');
+        a.href = map.items[i].link;
+        rewardCol.appendChild(a);
         rewardCol.innerText = map.items[i].reward;
         let tierCol = itemRow.insertCell();
         tierCol.innerText = getTierEnumString(map.items[i].tier);
@@ -848,6 +851,7 @@
       const idxTier = 4;
       const idxStackSize = 2;
       const idxReward = 3;
+      const idxLink = 5;
       for (let i = 1; i < parsedData.length; i++) {
         const row = parsedData[i];
         let mapName = row[idxMap];
@@ -862,7 +866,8 @@
             name: row[idxCard],
             stackSize: parseInt(row[idxStackSize]),
             reward: row[idxReward],
-            tier: TierEnum[row[idxTier]]
+            tier: TierEnum[row[idxTier]],
+            link: row[idxLink]
           })
         }
       }
